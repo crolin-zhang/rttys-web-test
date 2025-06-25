@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "features": "特性",
+    "docs": "文档",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "RTTYS - 你的下一代远程终端",
+    "subtitle": "随时随地，通过 Web 安全、高效地访问你的任何终端设备。",
+    "cta_button": "开始使用"
+  },
+  "features_section_title": "核心特性",
+  "features": {
+    "web_based": {
+      "title": "纯 Web 访问",
+      "description": "无需安装任何客户端软件，一个现代浏览器就是你的全能终端。"
+    },
+    "secure": {
+      "title": "端到端加密",
+      "description": "所有数据流都通过 TLS 加密，确保你的会话安全私密，防止窃听。"
+    },
+    "cross_platform": {
+      "title": "跨平台支持",
+      "description": "服务端支持 Linux, macOS, OpenWRT 等，在任何设备上运行。"
+    },
+    "easy_deploy": {
+      "title": "轻松部署",
+      "description": "基于 C 语言开发，资源占用极低，二进制文件无依赖，部署简单。"
+    },
+    "file_transfer": {
+      "title": "文件传输",
+      "description": "支持通过 zmodem 协议在本地和远程设备之间轻松上传和下载文件。"
+    },
+    "access_control": {
+      "title": "访问控制",
+      "description": "支持配置白名单，只允许授权的用户 ID 登录，保障设备安全。"
+    }
+  }
+}

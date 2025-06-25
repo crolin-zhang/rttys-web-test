@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "features": "Features",
+    "docs": "Docs",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "RTTYS - Your Next-Gen Remote Terminal",
+    "subtitle": "Access any of your terminal devices from anywhere, securely and efficiently, right from your web browser.",
+    "cta_button": "Get Started"
+  },
+  "features_section_title": "Core Features",
+  "features": {
+    "web_based": {
+      "title": "Purely Web-Based",
+      "description": "No client software needed. A modern browser is your all-in-one terminal."
+    },
+    "secure": {
+      "title": "End-to-End Encryption",
+      "description": "All data streams are encrypted with TLS, ensuring your sessions are private and secure."
+    },
+    "cross_platform": {
+      "title": "Cross-Platform Support",
+      "description": "The server runs on Linux, macOS, OpenWRT, and more. Access from any device."
+    },
+    "easy_deploy": {
+      "title": "Easy Deployment",
+      "description": "Built with C for minimal resource usage. Single binary with no dependencies."
+    },
+    "file_transfer": {
+      "title": "File Transfer",
+      "description": "Easily upload and download files between local and remote devices using the zmodem protocol."
+    },
+    "access_control": {
+      "title": "Access Control",
+      "description": "Configure whitelists to only allow authorized user IDs to log in, securing your devices."
+    }
+  }
+}
