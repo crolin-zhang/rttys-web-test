@@ -1,17 +1,18 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import LanguageSwitcher from './LanguageSwitcher.vue';
 
-const { t } = useI18n({ useScope: 'global' });
+// 强制使用全局作用域
+const { t, locale } = useI18n({ useScope: 'global' });
+
+function setLocale(newLocale) {
+  locale.value = newLocale;
+  localStorage.setItem('locale', newLocale);
+}
 </script>
-
 <template>
   <header class="navbar">
     <div class="container navbar-content">
-      <a href="/" class="logo">
-        <img src="/logo.svg" alt="RTTY Logo" class="logo-img" />
-        <span class="logo-text">rtty</span>
-      </a>
+      <a href="/" class="logo"><img src="/logo.svg" alt="RTTY Logo" class="logo-img" /><span class="logo-text">rtty</span></a>
       <div class="navbar-right">
         <nav class="nav-links">
           <a href="#features" class="nav-link">{{ t('nav.features') }}</a>
@@ -19,10 +20,12 @@ const { t } = useI18n({ useScope: 'global' });
           <a href="#" class="nav-link">{{ t('nav.docs') }}</a>
         </nav>
         <div class="nav-actions">
-          <LanguageSwitcher />
-          <a href="https://github.com/zhaojh329/rtty/releases" target="_blank" class="cta-button">
-            {{ t('nav.download') }}
-          </a>
+          <div class="language-switcher">
+            <a href="#" @click.prevent="setLocale('en')" :class="{ active: locale === 'en' }">EN</a>
+            <span class="separator">/</span>
+            <a href="#" @click.prevent="setLocale('zh')" :class="{ active: locale === 'zh' }">中</a>
+          </div>
+          <a href="https://github.com/zhaojh329/rtty/releases" target="_blank" class="cta-button">{{ t('nav.download') }}</a>
         </div>
       </div>
     </div>
@@ -41,5 +44,9 @@ const { t } = useI18n({ useScope: 'global' });
 .nav-actions { display: flex; align-items: center; gap: 1rem; }
 .cta-button { background-color: var(--color-primary); color: #fff; padding: 0.5rem 1rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 500; transition: background-color 0.2s ease; white-space: nowrap; }
 .cta-button:hover { background-color: #2980b9; }
+.language-switcher { display: flex; align-items: center; gap: 0.25rem; border: 1px solid var(--color-border); padding: 0.25rem 0.5rem; border-radius: 6px; background-color: var(--color-card-bg); }
+.language-switcher a { text-decoration: none; color: var(--color-text); font-size: 0.9rem; font-weight: 500; opacity: 0.6; transition: opacity 0.2s, color 0.2s; }
+.language-switcher a.active, .language-switcher a:hover { opacity: 1; color: var(--color-primary); }
+.separator { color: var(--color-border); }
 @media (max-width: 820px) { .navbar-right { display: none; } }
 </style>

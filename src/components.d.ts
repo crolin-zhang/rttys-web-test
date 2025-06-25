@@ -15,7 +15,6 @@ declare module 'vue' {
     Footer: typeof import('./components/Footer.vue')['default']
     GitHubStarButton: typeof import('./components/GitHubStarButton.vue')['default']
     HeroSection: typeof import('./components/HeroSection.vue')['default']
-    LanguageSwitcher: typeof import('./components/LanguageSwitcher.vue')['default']
     ParticleBackground: typeof import('./components/ParticleBackground.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
