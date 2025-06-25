@@ -1,6 +1,4 @@
 <script setup>
-import { useI18n } from "vue-i18n";
-const { t } = useI18n();
 import { loadSlim } from "tsparticles-slim";
 const particlesInit = async (engine) => { await loadSlim(engine); };
 const isDark = useDark();
