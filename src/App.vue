@@ -8,7 +8,7 @@ import TheFooter from './components/TheFooter.vue';
   <TheNavbar />
   
   <main>
-    <RouterView />
+    <RouterView :key="$i18n.locale" />
   </main>
 
   <TheFooter />

@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import LanguageSwitcher from './LanguageSwitcher.vue';
 
-const { t } = useI18n({ useScope: 'global' });
+const { t } = useI18n();
 </script>
 
 <template>
