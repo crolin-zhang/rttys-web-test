@@ -1,15 +1,17 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-const { t } = useI18n({ useScope: 'global' });
 
-const particlesOptions = { background: { color: { value: '#fff' } }, fpsLimit: 60, interactivity: { events: { onHover: { enable: true, mode: "repulse" }, resize: true }, modes: { repulse: { distance: 100, duration: 0.4 } } }, particles: { color: { value: "#cccccc" }, links: { color: "#dddddd", distance: 150, enable: true, opacity: 0.5, width: 1 }, collisions: { enable: true }, move: { direction: "none", enable: true, outModes: { default: "bounce" }, random: false, speed: 1.5, straight: false }, number: { density: { enable: true, area: 800 }, value: 80 }, opacity: { value: 0.5 }, shape: { type: "circle" }, size: { value: { min: 1, max: 5 } } }, detectRetina: true };
+// 确保使用全局作用域
+const { t } = useI18n({ useScope: 'global' });
 </script>
+
 <template>
+  <!-- Hero Section 不再有 Particles 组件 -->
   <section class="hero">
-    <Particles id="tsparticles" class="particles-bg" :options="particlesOptions" />
     <div class="container hero-content">
       <h1 class="hero-title">{{ t('hero.title') }}</h1>
       <p class="hero-subtitle">{{ t('hero.subtitle') }}</p>
+      
       <div class="terminal-window">
         <div class="terminal-header">
           <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
@@ -27,10 +29,21 @@ const particlesOptions = { background: { color: { value: '#fff' } }, fpsLimit: 6
     </div>
   </section>
 </template>
+
 <style scoped>
-.hero { position: relative; padding: 6rem 0; text-align: center; overflow: hidden; }
-.particles-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-.hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+/* 移除了所有与 particles-bg 相关的样式 */
+.hero { 
+  padding: 6rem 0; 
+  text-align: center; 
+  /* 添加一个简单的背景色作为替代 */
+  background-color: #f8f9fa;
+  border-bottom: 1px solid var(--color-border);
+}
+.hero-content { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
 .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.2; max-width: 800px; margin-bottom: 1.5rem; letter-spacing: -0.05em; color: var(--color-heading); }
 .hero-subtitle { font-size: 1.25rem; max-width: 650px; color: #333; margin-bottom: 3rem; }
 .terminal-window { width: 100%; max-width: 720px; border-radius: var(--border-radius); background-color: #1e1e1e; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: left; overflow: hidden; }

@@ -5,8 +5,10 @@ import { useI18n } from 'vue-i18n';
 const { t, locale } = useI18n({ useScope: 'global' });
 
 function setLocale(newLocale) {
+  console.log(`[DEBUG] Attempting to set locale to: ${newLocale}`);
   locale.value = newLocale;
   localStorage.setItem('locale', newLocale);
+  console.log(`[DEBUG] Current locale is now: ${locale.value}`);
 }
 </script>
 <template>
@@ -20,6 +22,9 @@ function setLocale(newLocale) {
           <a href="#" class="nav-link">{{ t('nav.docs') }}</a>
         </nav>
         <div class="nav-actions">
+          <!-- 调试信息 -->
+          <span class="debug-info">Locale: {{ locale }}</span>
+          <!-- 切换器 -->
           <div class="language-switcher">
             <a href="#" @click.prevent="setLocale('en')" :class="{ active: locale === 'en' }">EN</a>
             <span class="separator">/</span>
@@ -37,7 +42,7 @@ function setLocale(newLocale) {
 .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
 .logo-img { height: 32px; margin-right: 0.5rem; }
 .logo-text { font-size: 1.5rem; font-weight: 800; color: var(--color-heading); }
-.navbar-right { display: flex; align-items: center; gap: 2rem; }
+.navbar-right { display: flex; align-items: center; gap: 1rem; } /* Reduced gap for debug info */
 .nav-links { display: flex; gap: 1.5rem; }
 .nav-link { text-decoration: none; color: var(--color-text); font-weight: 500; transition: color 0.2s ease; white-space: nowrap; }
 .nav-link:hover { color: var(--color-primary); }
@@ -48,5 +53,7 @@ function setLocale(newLocale) {
 .language-switcher a { text-decoration: none; color: var(--color-text); font-size: 0.9rem; font-weight: 500; opacity: 0.6; transition: opacity 0.2s, color 0.2s; }
 .language-switcher a.active, .language-switcher a:hover { opacity: 1; color: var(--color-primary); }
 .separator { color: var(--color-border); }
-@media (max-width: 820px) { .navbar-right { display: none; } }
+/* Debug Info Style */
+.debug-info { font-family: monospace; font-size: 12px; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; color: #333; }
+@media (max-width: 920px) { .navbar-right { display: none; } }
 </style>
