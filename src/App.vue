@@ -1,27 +1,31 @@
-<script setup>
-import AppHeader from './components/AppHeader.vue'
-</script>
-
 <template>
-  <el-config-provider :locale="zhCn">
-    <div class="common-layout">
-      <el-container>
-        <AppHeader />
-        <el-main>
-          <router-view />
-        </el-main>
-      </el-container>
-    </div>
-  </el-config-provider>
+  <!-- 关键修复：添加 direction="vertical" -->
+  <el-container direction="vertical">
+    <AppHeader />
+    <el-main>
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </el-main>
+  </el-container>
 </template>
 
 <style>
-/* 全局样式可以放在这里或 assets/main.css */
-body {
+/* 确保容器占满整个视口高度 */
+html, body, #app, .el-container {
+  height: 100%;
   margin: 0;
-  background-color: var(--el-bg-color-page);
 }
-.el-main {
-  padding: 0;
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

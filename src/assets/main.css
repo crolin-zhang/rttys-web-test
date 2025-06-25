@@ -1,46 +1,7 @@
-/* 引入现代、清晰的字体 Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-
-/* 使用 CSS 变量定义我们的调色板，便于暗黑/亮色模式主题化 */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #2c3e50;
-  --text-color-light: #4a5568;
-  --header-bg: rgba(255, 255, 255, 0.8);
-  --border-color: #e2e8f0;
-
-  /* 高亮色 */
-  --accent-color-1: #4f46e5; /* 靛蓝 */
-  --accent-color-2: #ec4899; /* 粉色 */
-}
-
-html.dark {
-  --bg-color: #111827; /* 深邃、丰富的蓝灰色 */
-  --text-color: #e2e8f0;
-  --text-color-light: #94a3b8;
-  --header-bg: rgba(17, 24, 39, 0.8);
-  --border-color: #374151;
-}
-
-/* 全局样式 */
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin: 0;
-}
-
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 用于创建渐变文本的辅助类 */
-.gradient-text {
-  background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-}
+:root { --bg-color: #ffffff; --bg-color-soft: #f9fafb; --header-bg: rgba(255, 255, 255, 0.8); --text-color: #1f2937; --text-color-light: #6b7280; --border-color: #e5e7eb; --accent-color-1: #4338ca; --accent-color-2: #be185d; }
+html.dark { --bg-color: #030712; --bg-color-soft: #111827; --header-bg: rgba(3, 7, 18, 0.8); --text-color: #f9fafb; --text-color-light: #9ca3af; --border-color: #374151; }
+body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; font-size: 16px; line-height: 1.7; background-color: var(--bg-color); color: var(--text-color); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: background-color 0.3s ease, color 0.3s ease; }
+.el-main { padding: 0; background-color: var(--bg-color); transition: background-color 0.3s ease; }
+.gradient-text { background: linear-gradient(90deg, var(--accent-color-1) 0%, var(--accent-color-2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; animation: gradient-animation 5s ease infinite; background-size: 200% 200%; }
+@keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
