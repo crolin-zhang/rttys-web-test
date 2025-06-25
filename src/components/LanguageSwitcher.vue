@@ -1,6 +1,5 @@
 <template>
   <div class="language-switcher">
-    <!-- 我们不再需要 :class，因为整个页面都会刷新 -->
     <a href="#" @click.prevent="setLocale('en')">EN</a>
     <span class="separator">/</span>
     <a href="#" @click.prevent="setLocale('zh')">中</a>
@@ -8,12 +7,11 @@
 </template>
 
 <script setup>
-// 不再直接导入 i18n 实例！
 import { useI18n } from 'vue-i18n';
 
-// 通过 useI18n 钩子获取全局的 locale 引用
+// 通过 useI18n() 钩子获取全局的 locale 引用
 // 这是唯一正确的、与 Vue 响应式系统集成的方式
-const { locale } = useI18n({ useScope: 'global' });
+const { locale } = useI18n();
 
 function setLocale(newLocale) {
   // 修改从钩子中获取的 locale ref，这将触发所有依赖项的更新
