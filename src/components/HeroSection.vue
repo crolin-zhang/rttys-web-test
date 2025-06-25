@@ -1,13 +1,29 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
+// 不需要再从这里导入粒子库的任何东西
 
-// 确保使用全局作用域
 const { t } = useI18n({ useScope: 'global' });
-</script>
 
+const particlesOptions = {
+    preset: "links",
+    background: {
+        color: {
+            value: '#fff'
+        }
+    },
+    particles: {
+        color: { value: '#bbb' },
+        links: { color: '#ccc' }
+    }
+};
+</script>
 <template>
-  <!-- Hero Section 不再有 Particles 组件 -->
   <section class="hero">
+    <Particles
+      id="tsparticles"
+      class="particles-bg"
+      :options="particlesOptions"
+    />
     <div class="container hero-content">
       <h1 class="hero-title">{{ t('hero.title') }}</h1>
       <p class="hero-subtitle">{{ t('hero.subtitle') }}</p>
@@ -29,21 +45,10 @@ const { t } = useI18n({ useScope: 'global' });
     </div>
   </section>
 </template>
-
 <style scoped>
-/* 移除了所有与 particles-bg 相关的样式 */
-.hero { 
-  padding: 6rem 0; 
-  text-align: center; 
-  /* 添加一个简单的背景色作为替代 */
-  background-color: #f8f9fa;
-  border-bottom: 1px solid var(--color-border);
-}
-.hero-content { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-}
+.hero { position: relative; padding: 6rem 0; text-align: center; overflow: hidden; }
+.particles-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+.hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.2; max-width: 800px; margin-bottom: 1.5rem; letter-spacing: -0.05em; color: var(--color-heading); }
 .hero-subtitle { font-size: 1.25rem; max-width: 650px; color: #333; margin-bottom: 3rem; }
 .terminal-window { width: 100%; max-width: 720px; border-radius: var(--border-radius); background-color: #1e1e1e; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: left; overflow: hidden; }
