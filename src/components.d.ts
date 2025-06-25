@@ -10,15 +10,17 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./components/AppHeader.vue')['default']
     DynamicTopology: typeof import('./components/DynamicTopology.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     FeatureCard: typeof import('./components/FeatureCard.vue')['default']
     FeaturesSection: typeof import('./components/FeaturesSection.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GitHubStarButton: typeof import('./components/GitHubStarButton.vue')['default']
+    HeroSection: typeof import('./components/HeroSection.vue')['default']
+    LanguageSwitcher: typeof import('./components/LanguageSwitcher.vue')['default']
     ParticleBackground: typeof import('./components/ParticleBackground.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TheFooter: typeof import('./components/TheFooter.vue')['default']
+    TheNavbar: typeof import('./components/TheNavbar.vue')['default']
     TranslateIcon: typeof import('./components/icons/TranslateIcon.vue')['default']
   }
 }
