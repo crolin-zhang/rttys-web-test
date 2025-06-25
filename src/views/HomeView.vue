@@ -1,50 +1,179 @@
-<script setup>
-import { useI18n } from "vue-i18n";
-const { t } = useI18n();
-import { loadSlim } from "tsparticles-slim";
-const particlesInit = async (engine) => { await loadSlim(engine); };
-const isDark = useDark();
-const goToGithub = () => { window.open('https://github.com/zhaojh329/rtty', '_blank'); };
-// 这是复刻 rttys.net:5913 的粒子效果配置
-const particleOptions = computed(() => ({
-  fpsLimit: 60,
-  particles: {
-    number: { value: 150, density: { enable: true, value_area: 800 } },
-    color: { value: isDark.value ? "#374151" : "#d1d5db" },
-    shape: { type: "line" },
-    opacity: { value: 1, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.5, sync: false } },
-    size: { value: 1, random: false },
-    line_linked: { enable: false },
-    move: { enable: true, speed: 0.2, direction: "none", random: true, straight: false, out_mode: "out" }
-  },
-  interactivity: { detect_on: "canvas", events: { onhover: { enable: false }, onclick: { enable: false } } },
-  retina_detect: true
-}));
-</script>
+<!-- src/views/HomeView.vue -->
 <template>
-  <div>
-    <div class="hero-container">
-      <Particles id="tsparticles" :particlesInit="particlesInit" :options="particleOptions" />
-      <div class="hero-content">
-        <h1 class="hero-title"><span class="gradient-text">您的通用</span><br />远程终端 TTY</h1>
-        <p class="hero-subtitle">从浏览器即可访问全球成千上万的设备。<br />轻量级 C 语言客户端，高性能 Go 语言服务端。</p>
-        <div class="hero-actions">
-          <el-button type="primary" size="large" round class="action-btn primary">开始使用</el-button>
-          <el-button size="large" round class="action-btn secondary" @click="goToGithub"><el-icon><Promotion /></el-icon> 查看源码</el-button>
+  <div class="home-view">
+    <header class="main-header">
+      <div class="logo">
+        <span class="logo-text">RTTY</span>
+      </div>
+      <nav class="main-nav">
+        <a href="#features" class="nav-link">{{ t('nav.features') }}</a>
+        <a href="https://github.com/zhaojh329/rttys-doc" target="_blank" class="nav-link">{{ t('nav.docs') }}</a>
+        <a href="https://github.com/zhaojh329/rttys" target="_blank" class="nav-link">{{ t('nav.github') }}</a>
+      </nav>
+      <div class="header-right">
+        <el-switch
+          v-model="isChinese"
+          @change="toggleLanguage"
+          active-text="中"
+          inactive-text="EN"
+          inline-prompt
+          style="--el-switch-on-color: #13ce66; --el-switch-off-color: #409eff"
+        ></el-switch>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- 
+        FIX: 整个 hero-section 已被完全重写，修复了所有HTML结构问题和国际化问题。
+      -->
+      <div class="hero-section">
+        <div class="title-container">
+          <h1 class="main-title">{{ t('hero.title_line1') }}</h1>
+          <h2 class="sub-title">{{ t('hero.title_line2') }}</h2>
+        </div>
+
+        <p class="description" v-html="t('hero.subtitle')"></p>
+        
+        <div class="cta-buttons">
+          <el-button type="primary" class="cta-button" @click="handleStart">{{ t('hero.cta_button') }}</el-button>
+          <el-button class="cta-button secondary" @click="handleViewSource">{{ t('nav.github') }}</el-button>
         </div>
       </div>
-    </div>
-    <FeaturesSection />
+      <!-- .hero-section 结束 -->
+
+      <div id="features" class="features-section">
+        <!-- 这里可以放你未来的特性展示区 -->
+      </div>
+    </main>
+
+    <footer class="main-footer">
+      <p>© 2024 RTTY. All rights reserved.</p>
+    </footer>
   </div>
 </template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
+const router = useRouter()
+
+// 语言切换逻辑
+const isChinese = ref(locale.value === 'zh')
+const toggleLanguage = (value) => {
+  locale.value = value ? 'zh' : 'en'
+}
+
+const handleStart = () => {
+  // 跳转到你的终端页面
+  router.push('/terminal') // 假设你的终端页路由是 /terminal
+}
+
+const handleViewSource = () => {
+  window.open('https://github.com/zhaojh329/rttys', '_blank')
+}
+</script>
+
 <style scoped>
-.hero-container { display: flex; align-items: center; justify-content: center; text-align: center; min-height: calc(100vh - 64px); padding: 0 24px; overflow: hidden; position: relative; background-color: var(--bg-color-soft); transition: background-color 0.3s ease; }
-#tsparticles { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
-.hero-content { position: relative; z-index: 1; }
-.hero-title { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.05em; margin: 0 0 1.5rem; }
-.hero-subtitle { font-size: clamp(1rem, 4vw, 1.25rem); color: var(--text-color-light); margin-top: 2rem; line-height: 1.6; max-width: 600px; margin: 0 auto 2.5rem; }
-.hero-actions { display: flex; justify-content: center; gap: 1rem; }
-.action-btn.primary { border: none; font-weight: 600; background: linear-gradient(90deg, var(--accent-color-1) 0%, var(--accent-color-2) 100%); transition: transform 0.2s ease; }
-.action-btn.primary:hover { transform: scale(1.05); }
-.action-btn.secondary { font-weight: 600; background-color: var(--bg-color); border: 1px solid var(--border-color); }
+.home-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(26, 26, 26, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.main-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.hero-section {
+  text-align: center;
+  max-width: 800px;
+}
+
+.title-container {
+  margin-bottom: 1.5rem;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.sub-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: -webkit-linear-gradient(45deg, #409eff, #aa58e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin: 0 auto 2.5rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cta-button {
+  padding: 1.5rem 2rem;
+  font-size: 1rem;
+}
+
+.main-footer {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
 </style>
