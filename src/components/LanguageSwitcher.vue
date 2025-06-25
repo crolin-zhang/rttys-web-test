@@ -1,23 +1,23 @@
 <template>
   <div class="language-switcher">
-    <a href="#" @click.prevent="setLocale('en')" :class="{ active: currentLocale === 'en' }">EN</a>
+    <!-- 我们不再需要 :class，因为整个页面都会刷新 -->
+    <a href="#" @click.prevent="setLocale('en')">EN</a>
     <span class="separator">/</span>
-    <a href="#" @click.prevent="setLocale('zh')" :class="{ active: currentLocale === 'zh' }">中</a>
+    <a href="#" @click.prevent="setLocale('zh')">中</a>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-// 直接导入 i18n 实例来进行修改！
-import i18n from '@/i18n';
+// 不再直接导入 i18n 实例！
+import { useI18n } from 'vue-i18n';
 
-// 使用 computed 属性来响应式地获取当前语言
-const currentLocale = computed(() => i18n.global.locale.value);
+// 通过 useI18n 钩子获取全局的 locale 引用
+// 这是唯一正确的、与 Vue 响应式系统集成的方式
+const { locale } = useI18n({ useScope: 'global' });
 
 function setLocale(newLocale) {
-  // 直接修改全局实例的 locale
-  i18n.global.locale.value = newLocale;
-  // 将用户的选择保存到 localStorage，以便下次访问时记住
+  // 修改从钩子中获取的 locale ref，这将触发所有依赖项的更新
+  locale.value = newLocale;
   localStorage.setItem('locale', newLocale);
 }
 </script>
@@ -40,7 +40,6 @@ function setLocale(newLocale) {
   opacity: 0.6;
   transition: opacity 0.2s, color 0.2s;
 }
-.language-switcher a.active,
 .language-switcher a:hover {
   opacity: 1;
   color: var(--color-primary);
