@@ -3,7 +3,6 @@ import { RouterView } from 'vue-router'
 import TheNavbar from './components/TheNavbar.vue';
 import TheFooter from './components/TheFooter.vue';
 import { useI18n } from 'vue-i18n';
-
 const { locale } = useI18n({ useScope: 'global' });
 </script>
 <template>

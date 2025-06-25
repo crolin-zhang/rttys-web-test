@@ -1,33 +1,27 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-// 不需要再从这里导入粒子库的任何东西
+import { onMounted } from 'vue';
+import { tsParticles } from 'tsparticles-engine';
+import { loadFull } from 'tsparticles';
 
 const { t } = useI18n({ useScope: 'global' });
 
-const particlesOptions = {
-    preset: "links",
-    background: {
-        color: {
-            value: '#fff'
-        }
-    },
-    particles: {
-        color: { value: '#bbb' },
-        links: { color: '#ccc' }
-    }
-};
+const particlesOptions = { background: { color: { value: '#fff' } }, fpsLimit: 120, interactivity: { events: { onClick: { enable: true, mode: 'push' }, onHover: { enable: true, mode: 'repulse' }, }, modes: { push: { quantity: 4 }, repulse: { distance: 150, duration: 0.4 } } }, particles: { color: { value: '#bbb' }, links: { color: '#ccc', distance: 150, enable: true, opacity: 0.5, width: 1 }, move: { direction: 'none', enable: true, outModes: { default: 'bounce' }, random: false, speed: 2, straight: false }, number: { density: { enable: true, }, value: 80 }, opacity: { value: 0.5 }, shape: { type: 'circle' }, size: { value: { min: 1, max: 5 } } }, detectRetina: true };
+
+onMounted(async () => {
+    await loadFull(tsParticles);
+    await tsParticles.load({
+        id: 'tsparticles',
+        options: particlesOptions
+    });
+});
 </script>
 <template>
   <section class="hero">
-    <Particles
-      id="tsparticles"
-      class="particles-bg"
-      :options="particlesOptions"
-    />
+    <div id="tsparticles" class="particles-bg"></div>
     <div class="container hero-content">
       <h1 class="hero-title">{{ t('hero.title') }}</h1>
       <p class="hero-subtitle">{{ t('hero.subtitle') }}</p>
-      
       <div class="terminal-window">
         <div class="terminal-header">
           <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>

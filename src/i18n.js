@@ -1,19 +1,12 @@
 import { createI18n } from 'vue-i18n'
-import en from './locales/en.json'
-import zh from './locales/zh.json'
-
-// 尝试从 localStorage 获取语言设置，否则根据浏览器语言判断
+import enMessages from './locales/en.js'
+import zhMessages from './locales/zh.js'
 const savedLocale = localStorage.getItem('locale');
 const defaultLocale = savedLocale || (navigator.language.startsWith('zh') ? 'zh' : 'en');
-
 const i18n = createI18n({
-  legacy: false, // 使用 Composition API 模式
+  legacy: false,
   locale: defaultLocale,
-  fallbackLocale: 'en', // 回退语言
-  messages: {
-    en,
-    zh
-  }
+  fallbackLocale: 'en',
+  messages: { en: enMessages, zh: zhMessages }
 })
-
 export default i18n
