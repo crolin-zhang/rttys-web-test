@@ -40,7 +40,6 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref, watch } from 'vue';
-import anime from 'animejs';
 import { useDark } from '@vueuse/core';
 
 const isDark = useDark();
