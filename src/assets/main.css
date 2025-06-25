@@ -1,46 +1,46 @@
+/* 引入现代、清晰的字体 Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+/* 使用 CSS 变量定义我们的调色板，便于暗黑/亮色模式主题化 */
 :root {
-  --app-bg-color-light: #f7f8fa;
-  --app-bg-color-dark: #101014;
-  --header-bg-color-light: rgba(255, 255, 255, 0.7);
-  --header-bg-color-dark: rgba(16, 16, 20, 0.7);
+  --bg-color: #ffffff;
+  --text-color: #2c3e50;
+  --text-color-light: #4a5568;
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --border-color: #e2e8f0;
+
+  /* 高亮色 */
+  --accent-color-1: #4f46e5; /* 靛蓝 */
+  --accent-color-2: #ec4899; /* 粉色 */
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  position: relative;
-  font-weight: normal;
+html.dark {
+  --bg-color: #111827; /* 深邃、丰富的蓝灰色 */
+  --text-color: #e2e8f0;
+  --text-color-light: #94a3b8;
+  --header-bg: rgba(17, 24, 39, 0.8);
+  --border-color: #374151;
 }
 
+/* 全局样式 */
 body {
-  min-height: 100vh;
-  color: var(--el-text-color-primary);
-  background: var(--app-bg-color-light);
-  transition: color 0.5s, background-color 0.5s;
-  line-height: 1.6;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+}
+
+#app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-html.dark {
-  --el-bg-color-page: #0a0a0c;
-  background: var(--app-bg-color-dark);
-  background-image: radial-gradient(at 20% 20%, hsla(212,45%,15%,.3) 0px, transparent 50%),
-                    radial-gradient(at 80% 80%, hsla(284,45%,15%,.3) 0px, transparent 50%);
-}
-
-#app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1;
-  z-index: 1;
+/* 用于创建渐变文本的辅助类 */
+.gradient-text {
+  background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
