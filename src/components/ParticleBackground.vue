@@ -26,69 +26,73 @@ const particlesInit = async (engine) => {
 const particleOptions = computed(() => ({
   background: {
     color: {
-      value: 'transparent',
-    },
+      value: 'transparent'
+    }
   },
-  fpsLimit: 120,
+  fpsLimit: 60,
   interactivity: {
     events: {
       onHover: {
         enable: true,
-        mode: 'grab',
+        mode: 'grab'
       },
-      resize: true,
+      onClick: {
+        enable: false
+      },
+      resize: true
     },
     modes: {
       grab: {
-        distance: 140,
+        distance: 150,
         links: {
           opacity: 1,
-        },
-      },
-    },
+          color: props.color
+        }
+      }
+    }
   },
   particles: {
     color: {
-      value: props.color, // Dynamic color
+      value: props.color
     },
     links: {
-      color: props.color, // Dynamic color
+      color: props.color,
       distance: 150,
       enable: true,
-      opacity: 0.4,
-      width: 1,
+      opacity: 0.5,
+      width: 1
     },
     collisions: {
-      enable: true,
+      enable: false
     },
     move: {
       direction: 'none',
       enable: true,
       outModes: {
-        default: 'bounce',
+        default: 'bounce'
       },
-      random: false,
+      random: true,
       speed: 1,
-      straight: false,
+      straight: false
     },
     number: {
       density: {
         enable: true,
-        area: 800,
+        area: 800
       },
-      value: 80,
+      value: 80
     },
     opacity: {
-      value: 0.5,
+      value: 0.5
     },
     shape: {
-      type: 'circle',
+      type: 'circle'
     },
     size: {
-      value: { min: 1, max: 3 },
-    },
+      value: { min: 1, max: 5 }
+    }
   },
-  detectRetina: true,
+  detectRetina: true
 }));
 </script>
 

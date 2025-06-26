@@ -49,7 +49,7 @@ const { t } = useI18n({ useScope: 'global' });
 .features { padding: 5rem 0; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
 .section-header { text-align: center; margin-bottom: 4rem; }
 .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-.section-header p { font-size: 1.1rem; color: #555; max-width: 500px; margin: 0 auto; }
+.section-header p { font-size: 1.1rem; color: var(--color-text); max-width: 500px; margin: 0 auto; }
 .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .feature-card { background-color: var(--color-background); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }

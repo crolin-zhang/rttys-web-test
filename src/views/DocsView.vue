@@ -3,9 +3,6 @@
     <h1 class="page-title">{{ t('docs.title') }}</h1>
     <el-card>
       <p>{{ t('docs.p1') }}</p>
-      <el-button type="primary" @click="openGitHub">
-        {{ t('docs.button') }}
-      </el-button>
     </el-card>
   </div>
 </template>
