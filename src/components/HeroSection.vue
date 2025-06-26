@@ -75,7 +75,6 @@ const particlesOptions = {
 
 <template>
   <section class="hero">
-    <!-- 直接使用全局注册的 <Particles> 组件 -->
     <Particles
       id="tsparticles"
       class="particles-bg"

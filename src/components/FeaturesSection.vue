@@ -46,7 +46,7 @@ const { t } = useI18n({ useScope: 'global' });
 </template>
 
 <style scoped>
-.features { padding: 5rem 0; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.features { padding: 5rem 0; }
 .section-header { text-align: center; margin-bottom: 4rem; }
 .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
 .section-header p { font-size: 1.1rem; color: var(--color-text); max-width: 500px; margin: 0 auto; }

@@ -23,5 +23,12 @@ export default defineConfig({
     alias: {
       '@': new URL('./src', import.meta.url).pathname
     }
+  },
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: true,
+    hmr: {
+      clientPort: 443
+    }
   }
 })

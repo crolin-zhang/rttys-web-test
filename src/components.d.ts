@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AnimatedBackground: typeof import('./components/AnimatedBackground.vue')['default']
     AppHeader: typeof import('./components/AppHeader.vue')['default']
     DynamicTopology: typeof import('./components/DynamicTopology.vue')['default']
     FeatureCard: typeof import('./components/FeatureCard.vue')['default']
